@@ -1,8 +1,26 @@
-import express, { Application, Request, Response, NextFunction } from 'express'
-const app: Application = express()
-app.get('/', (req: Request, res: Response, next: NextFunction) => {
-  res.send('Root route is working')
+import express from 'express'
+import { Client } from 'pg'
+
+const app = express()
+const port = 3000
+
+const client = new Client({
+  host: 'postgres',
+  user: 'postgres',
+  password: '21072002',
+  database: 'postgres'
 })
-app.listen(3000, () => {
-  console.log('Server listening on port 3000')
+
+client
+  .connect()
+  .then(() => console.log('Connected to PostgreSQL'))
+  .catch((err) => console.error('Connection error', err.stack))
+
+app.get('/', (req, res) => {
+  console.log(req)
+  res.send('Hello, Docker with Express and PostgreSQL!')
+})
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`)
 })
