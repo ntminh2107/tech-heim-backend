@@ -11,7 +11,7 @@
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
-    "migration:generate": "drizzle-kit generate ",
+    "migration:generate": "drizzle-kit generate",
     "migration:up": "node -r esbuild-register src/db/migrations/migrate.ts"
   },
   "keywords": [],
